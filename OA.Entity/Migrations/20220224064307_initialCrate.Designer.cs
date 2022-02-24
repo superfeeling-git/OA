@@ -10,7 +10,7 @@ using OA.Entity;
 namespace OA.Entity.Migrations
 {
     [DbContext(typeof(OaDbContext))]
-    [Migration("20220223060737_initialCrate")]
+    [Migration("20220224064307_initialCrate")]
     partial class initialCrate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,9 +51,43 @@ namespace OA.Entity.Migrations
                     b.Property<int>("ParentId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Remark")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Departments");
+                });
+
+            modelBuilder.Entity("OA.Entity.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("CreateId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("LastModifyId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LastModifyTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

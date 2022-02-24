@@ -12,6 +12,5 @@ namespace OA.Repository
     /// </summary>
     public interface IDepartmentRepository : IBaseRepository<Department,int>
     {
-
     }
 }

@@ -1,26 +1,40 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using OA.Repository;
+using OA.Service;
 using OA.Entity;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using OA.Dtos.Department;
 
 namespace OA.WebApi.Controllers
 {
     [Route("api/[controller]/[action]")]
-    [ApiController]
+    [ApiController]    
     public class DepartmentController : ControllerBase
     {
-        private IDepartmentRepository _DepartmentRepository;
-        public DepartmentController(IDepartmentRepository DepartmentRepository)
+        private IDepartmentService _DepartmentService;
+        public DepartmentController(IDepartmentService DepartmentService)
         {
-            _DepartmentRepository = DepartmentRepository;
+            this._DepartmentService = DepartmentService;
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync(Department department)
+        public async Task<IActionResult> CreateAsync(DepartmentDto department)
         {
-            await _DepartmentRepository.CreateAsync(department);
+            await _DepartmentService.CreateAsync(new Department 
+            {
+                DeptName = department.DeptName,
+                DeptManageName = department.DeptManageName,
+                Remark = department.Remark
+            });
             return Ok();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> List()
+        {
+            var list = await _DepartmentService.GetRecursion();
+            return new JsonResult(list);
         }
     }
 }

@@ -17,8 +17,8 @@ namespace OA.Repository
         Task<int> DeleteAsync(TKey key);
         TEntity GetEntity(Expression<Func<TEntity, bool>> Condition);
         TEntity GetEntity(TKey key);
-        List<TEntity> GetList(Expression<Func<TEntity, bool>> Condition);
-        Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> Condition);
+        List<TEntity> GetList(Expression<Func<TEntity, bool>> Condition = null);
+        Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> Condition = null);
         bool Update(TEntity entity);
     }
 }

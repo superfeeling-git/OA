@@ -140,9 +140,14 @@ namespace OA.Repository
         /// <param name="Condition"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public virtual List<TEntity> GetList(Expression<Func<TEntity, bool>> Condition)
+        public virtual List<TEntity> GetList(Expression<Func<TEntity, bool>> Condition = null)
         {
-            return db.Set<TEntity>().Where(Condition).ToList();
+            var list = db.Set<TEntity>().AsQueryable();
+            if(Condition != null)
+            {
+                list = list.Where(Condition);
+            }
+            return list.ToList();
         }
 
         /// <summary>
@@ -151,9 +156,14 @@ namespace OA.Repository
         /// <param name="Condition"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public virtual async Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> Condition)
+        public virtual async Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> Condition = null)
         {
-            return await db.Set<TEntity>().Where(Condition).ToListAsync();
+            var list = db.Set<TEntity>().AsQueryable();
+            if (Condition != null)
+            {
+                list = list.Where(Condition);
+            }
+            return await list.ToListAsync();
         }
         #endregion
 

@@ -10,3 +10,10 @@ E:\Tech\OA\OA.Service\obj\Debug\net5.0\OA.Service.dll
 E:\Tech\OA\OA.Service\obj\Debug\net5.0\refint\OA.Service.dll
 E:\Tech\OA\OA.Service\obj\Debug\net5.0\OA.Service.pdb
 E:\Tech\OA\OA.Service\obj\Debug\net5.0\ref\OA.Service.dll
+E:\Tech\OA\OA.Service\bin\Debug\net5.0\OA.Dtos.dll
+E:\Tech\OA\OA.Service\bin\Debug\net5.0\OA.Entity.dll
+E:\Tech\OA\OA.Service\bin\Debug\net5.0\OA.Repository.dll
+E:\Tech\OA\OA.Service\bin\Debug\net5.0\OA.Dtos.pdb
+E:\Tech\OA\OA.Service\bin\Debug\net5.0\OA.Entity.pdb
+E:\Tech\OA\OA.Service\bin\Debug\net5.0\OA.Repository.pdb
+E:\Tech\OA\OA.Service\obj\Debug\net5.0\OA.Service.csproj.CopyComplete
