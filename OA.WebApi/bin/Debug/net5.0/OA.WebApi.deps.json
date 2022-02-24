@@ -1722,6 +1722,11 @@
         }
       },
       "OA.Service/1.0.0": {
+        "dependencies": {
+          "OA.Dtos": "1.0.0",
+          "OA.Entity": "1.0.0",
+          "OA.Repository": "1.0.0"
+        },
         "runtime": {
           "OA.Service.dll": {}
         },

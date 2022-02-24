@@ -237,7 +237,17 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "E:\\Tech\\OA\\OA.Dtos\\OA.Dtos.csproj": {
+                "projectPath": "E:\\Tech\\OA\\OA.Dtos\\OA.Dtos.csproj"
+              },
+              "E:\\Tech\\OA\\OA.Entity\\OA.Entity.csproj": {
+                "projectPath": "E:\\Tech\\OA\\OA.Entity\\OA.Entity.csproj"
+              },
+              "E:\\Tech\\OA\\OA.Repository\\OA.Repository.csproj": {
+                "projectPath": "E:\\Tech\\OA\\OA.Repository\\OA.Repository.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
