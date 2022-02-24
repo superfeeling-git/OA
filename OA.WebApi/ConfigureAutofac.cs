@@ -9,13 +9,6 @@ namespace OA.WebApi
     {
         protected override void Load(ContainerBuilder containerBuilder)
         {
-<<<<<<< HEAD
-            var assemblysServices = Assembly.Load("OA.Repository");
-
-            containerBuilder.RegisterAssemblyTypes(assemblysServices)
-                .AsImplementedInterfaces()
-                .InstancePerLifetimeScope();
-=======
             var assemblysRepository = Assembly.Load("OA.Repository");
             containerBuilder.RegisterAssemblyTypes(assemblysRepository)
                       .AsImplementedInterfaces()
@@ -25,7 +18,6 @@ namespace OA.WebApi
             containerBuilder.RegisterAssemblyTypes(assemblysService)
                       .AsImplementedInterfaces()
                       .InstancePerLifetimeScope();
->>>>>>> master
         }
     }
 }

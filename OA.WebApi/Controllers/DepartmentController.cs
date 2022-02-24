@@ -30,6 +30,13 @@ namespace OA.WebApi.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        public IActionResult Add(DepartmentDto department)
+        {
+            _DepartmentService.Create(department);
+            return Ok();
+        }
+
         [HttpGet]
         public async Task<IActionResult> List()
         {

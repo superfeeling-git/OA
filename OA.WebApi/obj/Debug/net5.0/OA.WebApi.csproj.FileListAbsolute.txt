@@ -68,3 +68,9 @@ E:\Tech\OA\OA.WebApi\bin\Debug\net5.0\Z.EntityFramework.Extensions.EFCore.dll
 E:\Tech\OA\OA.WebApi\bin\Debug\net5.0\Autofac.dll
 E:\Tech\OA\OA.WebApi\bin\Debug\net5.0\Autofac.Extensions.DependencyInjection.dll
 E:\Tech\OA\OA.WebApi\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+E:\Tech\OA\OA.WebApi\bin\Debug\net5.0\AutoMapper.dll
+E:\Tech\OA\OA.WebApi\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+E:\Tech\OA\OA.WebApi\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+E:\Tech\OA\OA.WebApi\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+E:\Tech\OA\OA.WebApi\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+E:\Tech\OA\OA.WebApi\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll

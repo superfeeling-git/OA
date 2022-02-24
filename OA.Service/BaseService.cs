@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using OA.Service;
 using OA.Repository;
+using AutoMapper;
 
 namespace OA.Service
 {
@@ -12,7 +13,7 @@ namespace OA.Service
         where TKey : struct
     {
         protected IBaseRepository<TEntity, TKey> BaseRepository;
-
+        
         public virtual int Create(TEntity entity)
         {
             return BaseRepository.Create(entity);

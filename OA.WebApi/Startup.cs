@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OA.Entity;
 using Autofac;
+using AutoMapper;
+using OA.Service;
+using OA.Dtos.Department;
 
 namespace OA.WebApi
 {
@@ -34,6 +37,8 @@ namespace OA.WebApi
             services.AddDbContext<OaDbContext>(action => {
                 action.UseSqlServer(Configuration.GetConnectionString("SqlSever"));
             });
+
+            services.AddAutoMapper(typeof(ConfigurationProfile));
 
             services.AddSwaggerGen(c =>
             {

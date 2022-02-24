@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using OA.Repository;
 using OA.Entity;
 using OA.Dtos.Department;
+using AutoMapper;
 
 namespace OA.Service
 {
@@ -19,6 +20,19 @@ namespace OA.Service
         }
 
         private List<TreeDto> TreeDtos = new List<TreeDto>();
+        public IMapper _mapper { get; set; }
+
+        public int Create(DepartmentDto dto)
+        {
+            var entity = _mapper.Map<Department>(dto);
+            List<Department> list = new List<Department> {
+                new Department{ DeptName = "abc" }
+            };
+
+            var dtos = _mapper.Map<List<DepartmentDto>>(list);
+
+            return 0;
+        }
 
         /// <summary>
         /// 获取所有嵌套的节点数据  递归
