@@ -38,14 +38,12 @@ namespace OA.WebApi
                 action.UseSqlServer(Configuration.GetConnectionString("SqlSever"));
             });
 
-            services.AddAutoMapper(typeof(ConfigurationProfile));
-            //¿çÓò
-            services.AddCors(action => {
-                action.AddDefaultPolicy(config => {
-                    config.AllowCredentials()
+            services.AddCors(c => {
+                c.AddDefaultPolicy(m => {
+                    m.AllowAnyHeader()
                     .WithOrigins("http://localhost:8080")
-                    .AllowAnyHeader()
-                    .AllowAnyMethod();
+                    .AllowAnyMethod()
+                    .AllowCredentials();
                 });
             });
 

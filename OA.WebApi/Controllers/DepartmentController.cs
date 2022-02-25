@@ -5,6 +5,7 @@ using OA.Entity;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using OA.Dtos.Department;
+using Microsoft.Extensions.Logging;
 
 namespace OA.WebApi.Controllers
 {
@@ -13,9 +14,23 @@ namespace OA.WebApi.Controllers
     public class DepartmentController : ControllerBase
     {
         private IDepartmentService _DepartmentService;
-        public DepartmentController(IDepartmentService DepartmentService)
+        private ILogger<DepartmentController> _logger;
+
+        public DepartmentController(
+            IDepartmentService DepartmentService,
+            ILogger<DepartmentController> logger
+            )
         {
             this._DepartmentService = DepartmentService;
+            this._logger = logger;
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> CreateAsync(DepartmentDto department)
+        {
+            await _DepartmentService.CreateAsync(department);
+            return Ok();
         }
 
         [HttpGet]

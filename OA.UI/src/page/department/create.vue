@@ -23,6 +23,7 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   import axios from '@/axios'
   export default {
@@ -45,6 +46,9 @@
         options: []
       };
 =======
+=======
+import axios from '@/axios.js'
+>>>>>>> master
 export default {
   data() {
     return {
@@ -98,6 +102,7 @@ export default {
         this.$refs[formName].resetFields();
       },
     },
+<<<<<<< HEAD
     mounted() {
       
       axios.get('/api/Department/List').then(m => {
@@ -106,6 +111,16 @@ export default {
       });
     }
   };
+=======
+  },
+  mounted() {
+    axios.get("/api/Department/List").then(m=>{
+      var reg = new RegExp('\\,"children":\\[]', 'g')
+      this.options =JSON.parse(JSON.stringify(m.data).replace(reg, ''));
+    });
+  },
+};
+>>>>>>> master
 </script>
 
 <style scoped>
