@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Tech\\OA\\OA.Webapi\\OA.WebApi.csproj": {}
+    "E:\\Tech\\OA\\oa.webapi\\OA.WebApi.csproj": {}
   },
   "projects": {
     "E:\\Tech\\OA\\OA.Dtos\\OA.Dtos.csproj": {
@@ -278,14 +278,14 @@
         }
       }
     },
-    "E:\\Tech\\OA\\OA.Webapi\\OA.WebApi.csproj": {
+    "E:\\Tech\\OA\\oa.webapi\\OA.WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Tech\\OA\\OA.Webapi\\OA.WebApi.csproj",
+        "projectUniqueName": "E:\\Tech\\OA\\oa.webapi\\OA.WebApi.csproj",
         "projectName": "OA.WebApi",
-        "projectPath": "E:\\Tech\\OA\\OA.Webapi\\OA.WebApi.csproj",
+        "projectPath": "E:\\Tech\\OA\\oa.webapi\\OA.WebApi.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "E:\\Tech\\OA\\OA.Webapi\\obj\\",
+        "outputPath": "E:\\Tech\\OA\\oa.webapi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

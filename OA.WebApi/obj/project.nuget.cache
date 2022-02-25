@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IbOOE9wfdrNDt4dOi7c4MjwNnIB79JMrm+sFm3suW8Ceu8iA8RXsB3I47dNqxdNB/+iVUONWFMor74YLPdx5+A==",
+  "dgSpecHash": "8sCHbTVVCiwlp4uf+DIxH/OZUqqrOtt9seZSa8oVNnefIJ6pN9i05UZKSSqZR9YcR5FGeHJ4ylOr8o8GkaosEQ==",
   "success": true,
-  "projectFilePath": "E:\\Tech\\OA\\OA.Webapi\\OA.WebApi.csproj",
+  "projectFilePath": "E:\\Tech\\OA\\oa.webapi\\OA.WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\autofac\\6.0.0\\autofac.6.0.0.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\autofac.extensions.dependencyinjection\\7.2.0\\autofac.extensions.dependencyinjection.7.2.0.nupkg.sha512",
