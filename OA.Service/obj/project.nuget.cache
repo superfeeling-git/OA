@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Z/4yLIlXcN3x2V3tt0i6qx4IomtGaW++4iclodl3q5ZFtXztcJGBo1QasoJCwbIyd8Hu5iVS9U/0Rnfo7svzxg==",
+  "dgSpecHash": "LW89/6Qw4pMLb7r5+6VIdxkv9jdW88wyLXuc/OEdUllKg5E9UeIpYftf4fpD1t1Wuyz6a16NdLg/QWgJ8ydc9g==",
   "success": true,
   "projectFilePath": "E:\\Tech\\OA\\OA.Service\\OA.Service.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.0.1\\microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",

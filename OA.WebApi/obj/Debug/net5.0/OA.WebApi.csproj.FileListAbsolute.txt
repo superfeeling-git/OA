@@ -68,3 +68,4 @@ E:\Tech\OA\OA.WebApi\bin\Debug\net5.0\Z.EntityFramework.Extensions.EFCore.dll
 E:\Tech\OA\OA.WebApi\bin\Debug\net5.0\Autofac.dll
 E:\Tech\OA\OA.WebApi\bin\Debug\net5.0\Autofac.Extensions.DependencyInjection.dll
 E:\Tech\OA\OA.WebApi\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+E:\Tech\OA\oa.webapi\bin\Debug\net5.0\AutoMapper.dll

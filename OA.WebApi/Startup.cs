@@ -35,6 +35,15 @@ namespace OA.WebApi
                 action.UseSqlServer(Configuration.GetConnectionString("SqlSever"));
             });
 
+            services.AddCors(c => {
+                c.AddDefaultPolicy(m => {
+                    m.AllowAnyHeader()
+                    .WithOrigins("http://localhost:8080")
+                    .AllowAnyMethod()
+                    .AllowCredentials();
+                });
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "OA.WebApi", Version = "v1" });
@@ -56,9 +65,11 @@ namespace OA.WebApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "OA.WebApi v1"));
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 

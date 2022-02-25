@@ -11,5 +11,6 @@ namespace OA.Service
     public interface IDepartmentService : IBaseService<Department,int>
     {
         Task<List<TreeDto>> GetRecursion();
+        int Create(DepartmentDto dto);
     }
 }

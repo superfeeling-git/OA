@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "8sCHbTVVCiwlp4uf+DIxH/OZUqqrOtt9seZSa8oVNnefIJ6pN9i05UZKSSqZR9YcR5FGeHJ4ylOr8o8GkaosEQ==",
+  "dgSpecHash": "WQLzEjhvxju8IgqUtg6b7PxLm7YlX0zyFHUvCt3pD3r6ZjAIU7w4RI4mpAuE2xlS1hUj6GYMLmh4iPiq/8rNmQ==",
   "success": true,
-  "projectFilePath": "E:\\Tech\\OA\\oa.webapi\\OA.WebApi.csproj",
+  "projectFilePath": "E:\\Tech\\OA\\OA.WebApi\\OA.WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\autofac\\6.0.0\\autofac.6.0.0.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\autofac.extensions.dependencyinjection\\7.2.0\\autofac.extensions.dependencyinjection.7.2.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",

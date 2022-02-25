@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\OA.Dtos\OA.Dtos.csproj" />
     <ProjectReference Include="..\OA.Entity\OA.Entity.csproj" />
     <ProjectReference Include="..\OA.Repository\OA.Repository.csproj" />
