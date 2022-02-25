@@ -23,6 +23,7 @@
 </template>
 
 <script>
+<<<<<<< Updated upstream
   import axios from '@/axios'
   export default {
     data() {
@@ -43,6 +44,41 @@
         value: [],
         options: []
       };
+=======
+export default {
+  data() {
+    return {
+      ruleForm: {
+        name: "",
+        region: "",
+        date1: "",
+        date2: "",
+        delivery: false,
+        type: [],
+        resource: "",
+        desc: "",
+      },
+      rules: {
+        name: [{ required: true, message: "请输入部门名称", trigger: "blur" }],
+      },
+      value: [],
+      options:[]
+    };
+  },
+  methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          alert("submit!");
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    },
+    handleChange(value) {
+      console.log(value);
+>>>>>>> Stashed changes
     },
     methods: {
       submitForm(formName) {
