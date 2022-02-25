@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EiuYfKpoY312uniBPa/4ydez7dmb2OuFbdtddm+kYjjHh82I2gCVzAtNIcBLhiTQ/78aGTWs9Yk09eHtdjVRtw==",
+  "dgSpecHash": "JIq+uvvto8DZ1o7HTaBnSQteo23RmvanLefPrVfKcxAuarhwXmw+WyUezXZN0KmuQxQ6hN6lp9Xyxw0Y1U4cQg==",
   "success": true,
-  "projectFilePath": "E:\\Tech\\OA\\OA.WebApi\\OA.WebApi.csproj",
+  "projectFilePath": "E:\\Tech\\OA\\oa.webapi\\OA.WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\autofac\\6.0.0\\autofac.6.0.0.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\autofac.extensions.dependencyinjection\\7.2.0\\autofac.extensions.dependencyinjection.7.2.0.nupkg.sha512",
@@ -146,12 +146,5 @@
     "C:\\Users\\Administrator\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\z.entityframework.extensions.efcore\\5.13.9\\z.entityframework.extensions.efcore.5.13.9.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "读取缓存文件 E:\\Tech\\OA\\OA.WebApi\\obj\\project.nuget.cache 时遇到问题: Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

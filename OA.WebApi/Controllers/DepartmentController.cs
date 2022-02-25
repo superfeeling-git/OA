@@ -18,29 +18,10 @@ namespace OA.WebApi.Controllers
             this._DepartmentService = DepartmentService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateAsync(DepartmentDto department)
-        {
-            await _DepartmentService.CreateAsync(new Department 
-            {
-                DeptName = department.DeptName,
-                DeptManageName = department.DeptManageName,
-                Remark = department.Remark
-            });
-            return Ok();
-        }
-
-        [HttpPost]
-        public IActionResult Add(DepartmentDto department)
-        {
-            _DepartmentService.Create(department);
-            return Ok();
-        }
-
         [HttpGet]
         public async Task<IActionResult> List()
         {
-            var list = await _DepartmentService.GetRecursion();
+            var list = await _DepartmentService.GetListAsync();
             return new JsonResult(list);
         }
     }

@@ -8,9 +8,8 @@ using OA.Entity;
 
 namespace OA.Service
 {
-    public interface IDepartmentService : IBaseService<Department,int>
+    public interface IDepartmentService : IBaseService<Department,DepartmentDto,int>
     {
-        Task<List<TreeDto>> GetRecursion();
-        int Create(DepartmentDto dto);
+
     }
 }

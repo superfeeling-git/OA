@@ -39,6 +39,15 @@ namespace OA.WebApi
             });
 
             services.AddAutoMapper(typeof(ConfigurationProfile));
+            //¿çÓò
+            services.AddCors(action => {
+                action.AddDefaultPolicy(config => {
+                    config.AllowCredentials()
+                    .WithOrigins("http://localhost:8080")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+                });
+            });
 
             services.AddSwaggerGen(c =>
             {
@@ -61,9 +70,11 @@ namespace OA.WebApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "OA.WebApi v1"));
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 

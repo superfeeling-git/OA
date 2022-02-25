@@ -7,20 +7,21 @@ using System.Threading.Tasks;
 
 namespace OA.Service
 {
-    public interface IBaseService<TEntity, TKey>
+    public interface IBaseService<TEntity, TDto, TKey>
         where TEntity : class, new()
+        where TDto : class, new()
         where TKey : struct
     {
-        int Create(TEntity entity);
-        Task CreateAsync(TEntity entity);
+        int Create(TDto dto);
+        Task CreateAsync(TDto dto);
         int Delete(Expression<Func<TEntity, bool>> Condition);
         int Delete(TKey key);
         int Delete(TKey[] keys);
         Task<int> DeleteAsync(TKey key);
-        TEntity GetEntity(Expression<Func<TEntity, bool>> Condition);
-        TEntity GetEntity(TKey key);
-        List<TEntity> GetList(Expression<Func<TEntity, bool>> Condition = null);
-        Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> Condition = null);
+        TDto GetEntity(Expression<Func<TEntity, bool>> Condition);
+        TDto GetEntity(TKey key);
+        List<TDto> GetList(Expression<Func<TEntity, bool>> Condition = null);
+        Task<List<TDto>> GetListAsync(Expression<Func<TEntity, bool>> Condition = null);
         bool Update(TEntity entity);
     }
 }
