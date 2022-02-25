@@ -34,12 +34,26 @@ namespace OA.Service
             return 0;
         }
 
+        public void Recursion(TreeDto dtos, List<Department> list)
+        {
+            foreach (var item in list.Where(m => m.ParentId == dtos.value))
+            {
+                var subItem_1 = new TreeDto
+                {
+                    value = item.Id,
+                    label = item.DeptName
+                };
+                dtos.children.Add(subItem_1);
+                Recursion(subItem_1, list);
+            }
+        }
+
         /// <summary>
         /// 获取所有嵌套的节点数据  递归
         /// </summary>
         /// <returns></returns>
-        public async Task<List<TreeDto>> GetRecursion()
-        {
+        public async Task<List<TreeDto>> GetRecursion()        {
+
             var list = await DepartmentRepository.GetListAsync();
 
             foreach (var item in list.Where(m => m.ParentId == 0))
@@ -50,19 +64,10 @@ namespace OA.Service
                     label = item.DeptName
                 };
 
-                foreach (var sub in list.Where(m => m.ParentId == item.Id))
-                {
-                    var subItem_2 = new TreeDto
-                    {
-                        value = sub.Id,
-                        label = sub.DeptName
-                    };
-                    subItem_1.children.Add(subItem_2);
-                }
+                Recursion(subItem_1, list);
 
                 TreeDtos.Add(subItem_1);
             }
-
             return TreeDtos;
         }
     }
