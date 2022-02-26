@@ -17,6 +17,7 @@ using Autofac;
 using AutoMapper;
 using OA.Service;
 using OA.Dtos.Department;
+using System.Reflection;
 
 namespace OA.WebApi
 {
@@ -37,6 +38,8 @@ namespace OA.WebApi
             services.AddDbContext<OaDbContext>(action => {
                 action.UseSqlServer(Configuration.GetConnectionString("SqlSever"));
             });
+
+            services.AddAutoMapper(Assembly.Load("OA.Service"));
 
             services.AddCors(c => {
                 c.AddDefaultPolicy(m => {

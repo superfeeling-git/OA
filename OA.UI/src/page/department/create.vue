@@ -22,105 +22,51 @@
   </div>
 </template>
 
+
 <script>
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-  import axios from '@/axios'
+  import axios from '@/axios.js'
   export default {
-    data() {
-      return {
-        ruleForm: {
-          name: "",
-          region: "",
-          date1: "",
-          date2: "",
-          delivery: false,
-          type: [],
-          resource: "",
-          desc: "",
-        },
-        rules: {
-          name: [{ required: true, message: "请输入部门名称", trigger: "blur" }],
-        },
-        value: [],
-        options: []
-      };
-=======
-=======
-import axios from '@/axios.js'
->>>>>>> master
-export default {
-  data() {
-    return {
-      ruleForm: {
-        name: "",
-        region: "",
-        date1: "",
-        date2: "",
-        delivery: false,
-        type: [],
-        resource: "",
-        desc: "",
+      data() {
+          return {
+              ruleForm: {
+                  DeptName: "",
+                  deptManageName: "",
+                  parentId: 0,
+                  remark: ""
+              },
+              value: [],
+              options: []
+          };
       },
-      rules: {
-        name: [{ required: true, message: "请输入部门名称", trigger: "blur" }],
+      methods: {
+          submitForm(formName) {
+              this.$refs[formName].validate((valid) => {
+                  if (valid) {
+                      axios.post('/api/Department/Create', this.ruleForm).then(m => {
+
+                      });
+                  } else {
+                      console.log("error submit!!");
+                      return false;
+                  }
+              });
+          },
+          handleChange(value) {
+              //获取数组的最后一个元素，赋值parentId
+              console.log(value);
+              this.ruleForm.parentId = value[value.length - 1];
+          },
+          resetForm(formName) {
+              this.$refs[formName].resetFields();
+          },
       },
-      value: [],
-      options:[]
-    };
-  },
-  methods: {
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          alert("submit!");
-        } else {
-          console.log("error submit!!");
-          return false;
-        }
-      });
-    },
-    handleChange(value) {
-      console.log(value);
->>>>>>> Stashed changes
-    },
-    methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            alert("submit!");
-          } else {
-            console.log("error submit!!");
-            return false;
-          }
-        });
+      mounted() {
+          axios.get("/api/Department/List").then(m => {
+              var reg = new RegExp('\\,"children":\\[]', 'g')
+              this.options = JSON.parse(JSON.stringify(m.data).replace(reg, ''));
+          });
       },
-      handleChange(value) {
-        console.log(value);
-      },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
-      },
-    },
-<<<<<<< HEAD
-    mounted() {
-      
-      axios.get('/api/Department/List').then(m => {
-        var reg = new RegExp('\\,"children":\\[]', 'g')
-        this.options = JSON.parse(JSON.stringify(m.data).replace(reg, ''))
-      });
-    }
   };
-=======
-  },
-  mounted() {
-    axios.get("/api/Department/List").then(m=>{
-      var reg = new RegExp('\\,"children":\\[]', 'g')
-      this.options =JSON.parse(JSON.stringify(m.data).replace(reg, ''));
-    });
-  },
-};
->>>>>>> master
 </script>
 
 <style scoped>

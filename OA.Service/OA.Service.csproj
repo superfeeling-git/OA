@@ -13,5 +13,4 @@
     <ProjectReference Include="..\OA.Entity\OA.Entity.csproj" />
     <ProjectReference Include="..\OA.Repository\OA.Repository.csproj" />
   </ItemGroup>
-
 </Project>
