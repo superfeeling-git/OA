@@ -14,7 +14,6 @@ namespace OA.Service
     {
         private IDepartmentRepository DepartmentRepository;
 
-
         public DepartmentService(IDepartmentRepository departmentRepository,IMapper mapper)
         {
             this.BaseRepository = departmentRepository;
