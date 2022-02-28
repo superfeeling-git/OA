@@ -36,7 +36,7 @@ namespace OA.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> List()
         {
-            var list = await _DepartmentService.GetRecursion();
+            var list = await _DepartmentService.GetList();
             return new JsonResult(list);
         }
     }

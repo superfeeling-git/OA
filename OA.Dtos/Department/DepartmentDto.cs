@@ -8,11 +8,12 @@ namespace OA.Dtos.Department
 {
     public class DepartmentDto
     {
+        [PrimaryKey]
         public int Id { get; set; }
         public string DeptName { get; set; }
         public int ParentId { get; set; }
         public string DeptManageName { get; set; }
         public string Remark { get; set; }
-        public List<DepartmentDto> children { get; set; }
+        public List<DepartmentDto> children { get; set; } = new List<DepartmentDto>();
     }
 }
