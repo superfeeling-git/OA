@@ -15,7 +15,7 @@ namespace OA.Service
     {
         protected IBaseRepository<TEntity, TKey> BaseRepository;
         protected IMapper mapper;
-        
+
         public virtual int Create(TDto dto)
         {
             var entity = mapper.Map<TEntity>(dto);
@@ -50,22 +50,26 @@ namespace OA.Service
 
         public virtual TDto GetEntity(Expression<Func<TEntity, bool>> Condition)
         {
-            return mapper.Map<TDto>(BaseRepository.GetEntity(Condition));
+            var entity = BaseRepository.GetEntity(Condition);
+            return mapper.Map<TDto>(entity);
         }
 
         public virtual TDto GetEntity(TKey key)
         {
-            return mapper.Map<TDto>(BaseRepository.GetEntity(key));
+            var entity = BaseRepository.GetEntity(key);
+            return mapper.Map<TDto>(entity);
         }
 
         public virtual List<TDto> GetList(Expression<Func<TEntity, bool>> Condition = null)
         {
-            return mapper.Map<List<TDto>>(BaseRepository.GetList(Condition));
+            var list = BaseRepository.GetList(Condition);
+            return mapper.Map<List<TDto>>(list);
         }
 
         public virtual async Task<List<TDto>> GetListAsync(Expression<Func<TEntity, bool>> Condition = null)
         {
-            return mapper.Map<List<TDto>>(await BaseRepository.GetListAsync(Condition));
+            var list = await BaseRepository.GetListAsync(Condition);
+            return mapper.Map<List<TDto>>(list);
         }
 
         public virtual bool Update(TEntity entity)

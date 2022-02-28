@@ -1,8 +1,12 @@
 <template>
     <div>
+<<<<<<< HEAD
         <button @click="submit">
             abc
         </button>
+=======
+
+>>>>>>> master
     </div>
 </template>
 
@@ -11,6 +15,7 @@
     export default {
         data() {
             return {
+<<<<<<< HEAD
                 form: {
                     userNameOrEmailAddress: "admin",
                     password: "1q2w3E*"
@@ -29,6 +34,15 @@
         },
         mounted() {
 
+=======
+
+            }
+        },
+        mounted() {
+            axios.get("/api/identity/roles/all").then(m => {
+
+            });
+>>>>>>> master
         },
     }
 </script>

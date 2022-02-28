@@ -39,7 +39,9 @@ namespace OA.WebApi
                 action.UseSqlServer(Configuration.GetConnectionString("SqlSever"));
             });
 
-            services.AddAutoMapper(Assembly.Load("OA.Service"));
+            //services.AddAutoMapper(Assembly.Load("OA.Service"));
+            //services.AddAutoMapper(Assembly.GetAssembly(typeof(OaProfile)));
+            services.AddAutoMapper(typeof(OaProfile));
 
             services.AddCors(c => {
                 c.AddDefaultPolicy(m => {
