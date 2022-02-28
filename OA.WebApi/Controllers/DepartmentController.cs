@@ -28,7 +28,7 @@ namespace OA.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAsync(DepartmentDto department)
         {
-            _DepartmentService.Create(department);
+            await _DepartmentService.CreateAsync(department);
             return Ok();
         }
 

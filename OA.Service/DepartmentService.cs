@@ -10,38 +10,18 @@ using AutoMapper;
 
 namespace OA.Service
 {
-    public class DepartmentService : BaseService<Department, int>, IDepartmentService
+    public class DepartmentService : BaseService<Department,DepartmentDto, int>, IDepartmentService
     {
         private IDepartmentRepository DepartmentRepository;
-        public DepartmentService(IDepartmentRepository departmentRepository)
+
+        public DepartmentService(IDepartmentRepository departmentRepository,IMapper mapper)
         {
             this.BaseRepository = departmentRepository;
             this.DepartmentRepository = departmentRepository;
+            this.mapper = mapper;
         }
 
         private List<TreeDto> TreeDtos = new List<TreeDto>();
-
-        public int Create(DepartmentDto dto)
-        {
-            var configuration = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<DepartmentDto, Department>().ReverseMap();
-            });
-
-            var mapper = configuration.CreateMapper();
-
-            var entity = mapper.Map<Department>(dto);
-
-            /*var entity = new Department
-            {
-                DeptName = dto.DeptName,
-                DeptManageName = dto.DeptManageName,
-                ParentId = dto.ParentId,
-                Remark = dto.Remark
-            };*/
-
-            return DepartmentRepository.Create(entity);
-        }
 
         public async Task<List<TreeDto>> GetRecursion()
         {
@@ -80,36 +60,36 @@ namespace OA.Service
             }
         }
 
-        /// <summary>
-        /// 获取所有嵌套的节点数据  递归
-        /// </summary>
-        /// <returns></returns>
-        public async Task<List<TreeDto>> GetData()
+        private List<DepartmentDto> ListDtos = new List<DepartmentDto>();
+
+        public async Task<List<DepartmentDto>> GetRecursionForList()
         {
             var list = await DepartmentRepository.GetListAsync();
 
             foreach (var item in list.Where(m => m.ParentId == 0))
             {
-                var subItem_1 = new TreeDto
-                {
-                    value = item.Id,
-                    label = item.DeptName
-                };
+                var dto = mapper.Map<DepartmentDto>(item);
 
-                foreach (var sub in list.Where(m => m.ParentId == item.Id))
-                {
-                    var subItem_2 = new TreeDto
-                    {
-                        value = sub.Id,
-                        label = sub.DeptName
-                    };
-                    subItem_1.children.Add(subItem_2);
-                }
+                GetSubNodeForList(dto, list);
 
-                TreeDtos.Add(subItem_1);
+                //递归
+                ListDtos.Add(dto);
             }
 
-            return TreeDtos;
+            return ListDtos;
+        }
+
+        public void GetSubNodeForList(DepartmentDto dto, List<Department> dtos)
+        {
+            var list = dtos.Where(m => m.ParentId == dto.Id);
+            foreach (var item in list)
+            {
+                var deptDto = mapper.Map<DepartmentDto>(item);
+
+                dto.children.Add(deptDto);
+
+                GetSubNodeForList(deptDto, dtos);
+            }
         }
     }
 }

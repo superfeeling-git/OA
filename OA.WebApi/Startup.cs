@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OA.Entity;
 using Autofac;
+using AutoMapper;
+using System.Reflection;
+using OA.Service;
 
 namespace OA.WebApi
 {
@@ -34,6 +37,10 @@ namespace OA.WebApi
             services.AddDbContext<OaDbContext>(action => {
                 action.UseSqlServer(Configuration.GetConnectionString("SqlSever"));
             });
+
+            //services.AddAutoMapper(Assembly.Load("OA.Service"));
+            //services.AddAutoMapper(Assembly.GetAssembly(typeof(OaProfile)));
+            services.AddAutoMapper(typeof(OaProfile));
 
             services.AddCors(c => {
                 c.AddDefaultPolicy(m => {
