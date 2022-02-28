@@ -9,28 +9,26 @@ using OA.Dtos;
 
 namespace OA.Service
 {
-    public class TreeService<TDto,TEntity>
-        where TDto : class, new()
+    public class TreeService : ITreeService
     {
         private IMapper mapper;
-        private List<TDto> ListDtos = new List<TDto>();
-        private List<TEntity> entities = new List<TEntity>();
 
-        public TreeService(IMapper mapper, List<TEntity> entities)
+        public TreeService(IMapper mapper)
         {
             this.mapper = mapper;
-            this.entities = entities;
         }
 
-        public List<TDto> GetRecursionForList()
+        public List<TDto> GetRecursionForList<TEntity, TDto>(List<TEntity> entities)
         {
+            List<TDto> ListDtos = new List<TDto>();
+
             var list = entities.Where(m => (m as dynamic).ParentId == 0);
 
             foreach (var item in list)
             {
                 var dto = mapper.Map<TDto>(item);
 
-                GetSubNodeForList(dto);
+                GetSubNodeForList(dto, entities);
 
                 //递归
                 ListDtos.Add(dto);
@@ -39,11 +37,11 @@ namespace OA.Service
             return ListDtos;
         }
 
-        public void GetSubNodeForList(TDto dto)
+        private void GetSubNodeForList<TEntity, TDto>(TDto dto, List<TEntity> entities)
         {
             var type = dto.GetType();
 
-            var id = (int)type.GetProperties().Where(m => m.CustomAttributes.Any(a => a.AttributeType == typeof(PrimaryKeyAttribute))).First().GetValue(dto);            
+            var id = (int)type.GetProperties().Where(m => m.CustomAttributes.Any(a => a.AttributeType == typeof(PrimaryKeyAttribute))).First().GetValue(dto);
 
             var list = entities.Where(m => (m as dynamic).ParentId == id);
             foreach (var item in list)
@@ -54,7 +52,7 @@ namespace OA.Service
 
                 children.Add(deptDto);
 
-                GetSubNodeForList(deptDto);
+                GetSubNodeForList(deptDto, entities);
             }
         }
     }

@@ -13,26 +13,24 @@ namespace OA.Service
     public class DepartmentService : BaseService<Department,DepartmentDto, int>, IDepartmentService
     {
         private IDepartmentRepository DepartmentRepository;
+        private ITreeService treeService;
 
-        public DepartmentService(IDepartmentRepository departmentRepository,IMapper mapper)
+        public DepartmentService(IDepartmentRepository departmentRepository,IMapper mapper, ITreeService treeService)
         {
             this.BaseRepository = departmentRepository;
             this.DepartmentRepository = departmentRepository;
             this.mapper = mapper;
+            this.treeService = treeService;
         }
         
         public async Task<List<TreeDto>> GetRecursion()
         {
-            var list = await DepartmentRepository.GetListAsync();
-            TreeService<TreeDto, Department> treeService = new TreeService<TreeDto, Department>(mapper, list);
-            return treeService.GetRecursionForList();
+            return treeService.GetRecursionForList<Department, TreeDto>(await DepartmentRepository.GetListAsync());
         }
 
         public async Task<List<DepartmentDto>> GetList()
         {
-            var list = await DepartmentRepository.GetListAsync();
-            TreeService<DepartmentDto, Department> treeService = new TreeService<DepartmentDto, Department>(mapper, list);
-            return treeService.GetRecursionForList();
+            return treeService.GetRecursionForList<Department, DepartmentDto>(await DepartmentRepository.GetListAsync());
         }
     }
 }
