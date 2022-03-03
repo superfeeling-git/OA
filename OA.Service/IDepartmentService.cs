@@ -10,6 +10,7 @@ namespace OA.Service
 {
     public interface IDepartmentService : IBaseService<Department, DepartmentDto, int>
     {
-        Task<List<TreeDto>> GetRecursion();
+        Task<List<TreeDto>> GetTreeNodesAsync();
+        Task<List<DepartmentDto>> GetTableDataAsync();
     }
 }

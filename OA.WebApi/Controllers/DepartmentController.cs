@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using OA.Dtos.Department;
 using Microsoft.Extensions.Logging;
+using OA.Service.Test;
 
 namespace OA.WebApi.Controllers
 {
@@ -16,15 +17,18 @@ namespace OA.WebApi.Controllers
         private IDepartmentService _DepartmentService;
         private ILogger<DepartmentController> _logger;
 
-        public DepartmentController(
-            IDepartmentService DepartmentService,
-            ILogger<DepartmentController> logger
-            )
+        public DepartmentController(IDepartmentService DepartmentService,
+            ILogger<DepartmentController> logger)
         {
             this._DepartmentService = DepartmentService;
             this._logger = logger;
         }
 
+        /// <summary>
+        /// 添加部门
+        /// </summary>
+        /// <param name="department"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> CreateAsync(DepartmentDto department)
         {
@@ -32,11 +36,31 @@ namespace OA.WebApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// 获取所有递归节点
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> List()
+        public async Task<IActionResult> GetTreeNodesAsync()
         {
-            var list = await _DepartmentService.GetRecursion();
+            var list = await _DepartmentService.GetTreeNodesAsync();
             return new JsonResult(list);
+        }
+
+        /// <summary>
+        /// 获取数据表格递归的数据
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> GetTableDataAsync()
+        {
+            return new JsonResult(await _DepartmentService.GetTableDataAsync());
+        }
+
+        [HttpGet]
+        public IActionResult GetDepartment(int id)
+        {
+            return Ok(_DepartmentService.GetEntity(id));
         }
     }
 }

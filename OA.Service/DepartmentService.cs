@@ -13,83 +13,24 @@ namespace OA.Service
     public class DepartmentService : BaseService<Department,DepartmentDto, int>, IDepartmentService
     {
         private IDepartmentRepository DepartmentRepository;
+        private ITreeService TreeService;
 
-        public DepartmentService(IDepartmentRepository departmentRepository,IMapper mapper)
+        public DepartmentService(IDepartmentRepository departmentRepository,IMapper mapper, ITreeService TreeService)
         {
             this.BaseRepository = departmentRepository;
             this.DepartmentRepository = departmentRepository;
             this.mapper = mapper;
+            this.TreeService = TreeService;
         }
 
-        private List<TreeDto> TreeDtos = new List<TreeDto>();
-
-        public async Task<List<TreeDto>> GetRecursion()
+        public async Task<List<TreeDto>> GetTreeNodesAsync()
         {
-            var list = await DepartmentRepository.GetListAsync();
-
-            foreach (var item in list.Where(m => m.ParentId == 0))
-            {
-                var subItem_1 = new TreeDto
-                {
-                    value = item.Id,
-                    label = item.DeptName
-                };
-
-                GetSubNode(subItem_1, list);
-
-                //递归
-                TreeDtos.Add(subItem_1);
-            }
-
-            return TreeDtos;
+            return TreeService.GetRecursionForList<Department, TreeDto>(await DepartmentRepository.GetListAsync());
         }
 
-        public void GetSubNode(TreeDto dto, List<Department> dtos)
+        public async Task<List<DepartmentDto>> GetTableDataAsync()
         {
-            var list = dtos.Where(m => m.ParentId == dto.value);
-            foreach (var item in list)
-            {
-                var subItem_2 = new TreeDto
-                {
-                    value = item.Id,
-                    label = item.DeptName
-                };
-                dto.children.Add(subItem_2);
-
-                GetSubNode(subItem_2, dtos);
-            }
-        }
-
-        private List<DepartmentDto> ListDtos = new List<DepartmentDto>();
-
-        public async Task<List<DepartmentDto>> GetRecursionForList()
-        {
-            var list = await DepartmentRepository.GetListAsync();
-
-            foreach (var item in list.Where(m => m.ParentId == 0))
-            {
-                var dto = mapper.Map<DepartmentDto>(item);
-
-                GetSubNodeForList(dto, list);
-
-                //递归
-                ListDtos.Add(dto);
-            }
-
-            return ListDtos;
-        }
-
-        public void GetSubNodeForList(DepartmentDto dto, List<Department> dtos)
-        {
-            var list = dtos.Where(m => m.ParentId == dto.Id);
-            foreach (var item in list)
-            {
-                var deptDto = mapper.Map<DepartmentDto>(item);
-
-                dto.children.Add(deptDto);
-
-                GetSubNodeForList(deptDto, dtos);
-            }
+            return TreeService.GetRecursionForList<Department, DepartmentDto>(await DepartmentRepository.GetListAsync());
         }
     }
 }

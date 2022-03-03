@@ -2,7 +2,7 @@
     <div>
         <el-form :model="ruleForm" ref="ruleForm" label-width="100px" class="demo-ruleForm">
             <el-form-item label="部门名称">
-                <el-input v-model="ruleForm.DeptName"></el-input>
+                <el-input v-model="ruleForm.deptName"></el-input>
             </el-form-item>
             <el-form-item label="上级部门">
                 <el-cascader style="width: 360px;" :props="{ checkStrictly: true }" clearable v-model="value"
@@ -14,11 +14,6 @@
             <el-form-item label="备注">
                 <el-input type="textarea" v-model="ruleForm.remark" :rows="8"></el-input>
             </el-form-item>
-
-            <el-form-item>
-                <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
-                <el-button @click="resetForm('ruleForm')">重置</el-button>
-            </el-form-item>
         </el-form>
     </div>
 </template>
@@ -26,25 +21,32 @@
 <script>
     import axios from '@/axios.js'
     export default {
+        name:"edit",
         data() {
             return {
                 ruleForm: {
-                    DeptName: "",
+                    deptName: "",
                     deptManageName: "",
                     parentId: 0,
                     remark: ""
                 },
+                tid:0,
                 value: [],
                 options: []
             };
+        },
+        props:{
+            id:Number
         },
         methods: {
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        axios.post('/api/Department/Create', this.ruleForm).then(m => {
+                        console.log('===============')
+                        console.log(this.ruleForm);
+                        // axios.post('/api/Department/Create', this.ruleForm).then(m => {
 
-                        });
+                        // });
                     } else {
                         console.log("error submit!!");
                         return false;
@@ -60,17 +62,21 @@
                 this.$refs[formName].resetFields();
             },
         },
+        created() {
+            
+        },
         mounted() {
+            console.log(this.tid);
+
             axios.get("/api/Department/GetTreeNodes").then(m => {
                 var reg = new RegExp('\\,"children":\\[]', 'g')
                 this.options = JSON.parse(JSON.stringify(m.data).replace(reg, ''));
             });
-        },
-    };
-</script>
 
-<style scoped>
-    .el-form {
-        width: 60%;
+            axios.get('/api/Department/GetDepartment?id=' + this.id).then(m => {
+                this.ruleForm = m.data;
+                this.value = m.data.parentId;
+            });
+        },
     }
-</style>
+</script>
