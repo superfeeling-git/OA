@@ -18,7 +18,7 @@
                 <i class="el-icon-location"></i>
                 <span>系统设置</span>
               </template>              
-              <el-menu-item index="1-4-1" @click="redirect('/department/create')">部门添加</el-menu-item>
+              <el-menu-item index="1-4-1" @click="redirect('/department/add')">部门添加</el-menu-item>
               <el-menu-item index="1-4-2" @click="redirect('/department/list')">部门管理</el-menu-item>
             </el-submenu>
             <el-menu-item index="2">

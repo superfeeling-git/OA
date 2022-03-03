@@ -15,9 +15,9 @@ namespace OA.Service
         public OaProfile()
         {
             CreateMap<Department, DepartmentDto>().ReverseMap();
-            CreateMap<Department, TreeDto>()
-                .ForMember(s => s.value, t => t.MapFrom(d => d.Id))
-                .ForMember(s => s.label, t => t.MapFrom(d => d.DeptName))
+            CreateMap<Department,TreeDto>()
+                .ForMember(m => m.value, opt => opt.MapFrom(src => src.Id))
+                .ForMember(m => m.label, opt => opt.MapFrom(src => src.DeptName))
                 .ReverseMap();
         }
     }
