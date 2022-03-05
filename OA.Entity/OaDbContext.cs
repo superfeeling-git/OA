@@ -22,6 +22,7 @@ namespace OA.Entity
         /// </summary>
         public DbSet<Department>  Departments{ get; set; }
         public DbSet<User>  Users{ get; set; }
+        public DbSet<UserAccount>  userAccounts{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,6 +30,16 @@ namespace OA.Entity
                 config.Property(m => m.DeptName).HasMaxLength(50);
                 config.Property(m => m.DeptManageName).HasMaxLength(50);
                 config.Property(m => m.Remark).HasMaxLength(500);
+            });
+
+            modelBuilder.Entity<UserAccount>(config => {
+                config.Property(m => m.Password).HasMaxLength(50);
+                config.Property(m => m.Account).HasMaxLength(50);
+                config.Property(m => m.FullName).HasMaxLength(500);
+                config.Property(m => m.Tel).HasMaxLength(500);
+                config.Property(m => m.LastLoginIp).HasMaxLength(500);
+                //主外键关系
+                //.......
             });
             base.OnModelCreating(modelBuilder);
         }

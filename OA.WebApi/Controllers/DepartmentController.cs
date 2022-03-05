@@ -62,5 +62,17 @@ namespace OA.WebApi.Controllers
         {
             return Ok(_DepartmentService.GetEntity(id));
         }
+
+        [HttpPost]
+        public IActionResult Update(DepartmentDto department)
+        {
+            return Ok(_DepartmentService.Update(department));
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            return Ok(_DepartmentService.Delete(id));
+        }
     }
 }

@@ -10,6 +10,8 @@ import router from './router'
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 
+//全局状态管理 Vuex
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -10,6 +10,9 @@ using Z.EntityFramework;
 using Z.EntityFramework.Plus;
 using Z.EntityFramework.Extensions;
 using Z.EntityFramework.Extensions.EFCore;
+using System.Reflection;
+using System.ComponentModel.DataAnnotations;
+using OA.Dtos.Department;
 
 namespace OA.Repository
 {
@@ -67,6 +70,7 @@ namespace OA.Repository
                 throw;
             }
         }
+
 
         /// <summary>
         /// 删除

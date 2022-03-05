@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using OA.Service;
 using OA.Repository;
 using AutoMapper;
+using System.Reflection;
+using System.Linq;
+using System.ComponentModel.DataAnnotations;
 
 namespace OA.Service
 {
@@ -72,9 +75,37 @@ namespace OA.Service
             return mapper.Map<List<TDto>>(list);
         }
 
-        public virtual bool Update(TEntity entity)
+        public virtual bool Update(TDto dto)
         {
-            return BaseRepository.Update(entity);
+            //从数据库先查实体
+            Type type = dto.GetType();
+
+            var props = type.GetProperties();
+
+            var primaryKey = props.First(m => m.GetCustomAttributes(typeof(KeyAttribute)).Count() > 0);
+
+            var id = primaryKey.GetValue(dto);
+
+            var db_entity = BaseRepository.GetEntity((TKey)id);
+
+            //实体所有属性
+            var entityprops = db_entity.GetType().GetProperties();
+
+            foreach (var item in entityprops)
+            {
+                if (props.Any(m => m.Name == item.Name))
+                {
+                    var currProp = props.First(m => m.Name == item.Name);
+                    item.SetValue(db_entity, currProp.GetValue(dto));
+                }
+            }
+
+            db_entity.GetType().GetProperty("LastModifyId").SetValue(db_entity, 0);
+
+            db_entity.GetType().GetProperty("LastModifyTime").SetValue(db_entity, DateTime.Now);
+
+            //遍历entity实体属体，给数据库赋值
+            return BaseRepository.Update(db_entity);
         }
     }
 }

@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OA.ConsoleAPP
 {
-    internal class Program
+    public partial class Person
     {
-        static void Main(string[] args)
+        public string GetName()
         {
-            Person person = new Person();
-            person.GetName();
+            return this.Name;
         }
     }
 }

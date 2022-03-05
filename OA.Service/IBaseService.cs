@@ -21,6 +21,6 @@ namespace OA.Service
         TDto GetEntity(TKey key);
         List<TDto> GetList(Expression<Func<TEntity, bool>> Condition = null);
         Task<List<TDto>> GetListAsync(Expression<Func<TEntity, bool>> Condition = null);
-        bool Update(TEntity entity);
+        bool Update(TDto dto);
     }
 }

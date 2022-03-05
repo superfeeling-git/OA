@@ -18,8 +18,8 @@
             </el-table-column>
         </el-table>
 
-        <el-dialog title="部门编辑" :visible.sync="dialogFormVisible" @close="closeDialog">
-            <dept-edit :id="id" v-if="refresh" ref="dept"></dept-edit>
+        <el-dialog title="部门编辑" :visible.sync="dialogFormVisible" :key="new Date().getTime()">
+            <dept-edit :id="id"  ref="dept"></dept-edit>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogFormVisible = false">取 消</el-button>
                 <el-button type="primary" @click="Save">确 定</el-button>
@@ -31,6 +31,7 @@
 <script>
     import axios from '@/axios'
     import DeptEdit from './edit'
+    import bus from '@/bus'
     export default {
         name:"list",
         components: {
@@ -40,36 +41,48 @@
             return {
                 tableData: [],
                 dialogFormVisible: false,
-                id: 0,
-                refresh:false
+                id: 0
             }
         },
         methods: {
             handleEdit(index, row) {
                 //弹窗
                 this.dialogFormVisible = true;
-                this.refresh = true;
                 this.id = row.id;
             },
             handleDelete(index, row) {
                 console.log(index, row);
             },
             closeDialog(){
-                this.refresh = false;
+
             },
             Save(){
+                var _this = this;
+                //bus.$emit('on-send');
                 //this.$refs.dept.submitForm('ruleForm');
-                console.log(this.$refs.dept.ruleForm);
-                //axios.post('')
+                
+                axios.post('/api/Department/Update',this.$refs.dept.ruleForm).then(m=>{
+                    this.$message({
+                        message: '更新成功',
+                        type: 'success',
+                        onClose: function () {
+                            _this.dialogFormVisible = false;
+                            _this.reLoad();
+                        }
+                    });
+                });
                 //console.log(this.$refs.dept);
                 //this.dialogFormVisible = false;
-            }
-        },
-        mounted() {
-            axios.get("/api/Department/GetTableData").then(m => {
+            },
+            reLoad(){
+                axios.get("/api/Department/GetTableData").then(m => {
                 var reg = new RegExp('\\,"children":\\[]', 'g')
                 this.tableData = JSON.parse(JSON.stringify(m.data).replace(reg, ''));
             });
+            }
+        },
+        mounted() {
+            this.reLoad();
         },
     }
 </script>

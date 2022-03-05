@@ -5,7 +5,7 @@
                 <el-input v-model="ruleForm.deptName"></el-input>
             </el-form-item>
             <el-form-item label="上级部门">
-                <el-cascader style="width: 360px;" :props="{ checkStrictly: true }" clearable v-model="value"
+                <el-cascader style="width: 360px;"  placeholder="顶级部门" :props="{ checkStrictly: true }" clearable v-model="value"
                     :options="options" @change="handleChange"></el-cascader>
             </el-form-item>
             <el-form-item label="部门负责人">
@@ -20,8 +20,10 @@
 
 <script>
     import axios from '@/axios.js'
+    import bus from '@/bus'
+
     export default {
-        name:"edit",
+        name: "edit",
         data() {
             return {
                 ruleForm: {
@@ -30,13 +32,13 @@
                     parentId: 0,
                     remark: ""
                 },
-                tid:0,
+                tid: 0,
                 value: [],
                 options: []
             };
         },
-        props:{
-            id:Number
+        props: {
+            id: Number
         },
         methods: {
             submitForm(formName) {
@@ -63,11 +65,9 @@
             },
         },
         created() {
-            
+
         },
         mounted() {
-            console.log(this.tid);
-
             axios.get("/api/Department/GetTreeNodes").then(m => {
                 var reg = new RegExp('\\,"children":\\[]', 'g')
                 this.options = JSON.parse(JSON.stringify(m.data).replace(reg, ''));
@@ -77,6 +77,23 @@
                 this.ruleForm = m.data;
                 this.value = m.data.parentId;
             });
+
+            // let _this = this;
+            // bus.$on('on-send', function () {
+
+            //     //parm.dialogFormVisible = false;
+            //     //parm.reLoad();
+            //     axios.post('/api/Department/Update', _this.ruleForm).then(m => {
+            //         this.$message({
+            //             message: '更新成功',
+            //             type: 'success',
+            //             onClose: function () {
+            //                 _this.$parent.$parent.dialogFormVisible = false;
+            //                 _this.$parent.$parent.reLoad();
+            //             }
+            //         });
+            //     });
+            // })
         },
     }
 </script>

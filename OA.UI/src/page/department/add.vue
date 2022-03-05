@@ -4,9 +4,13 @@
             <el-form-item label="部门名称">
                 <el-input v-model="ruleForm.DeptName"></el-input>
             </el-form-item>
-            <el-form-item label="上级部门">
-                <el-cascader style="width: 360px;" :props="{ checkStrictly: true }" clearable v-model="value"
-                    :options="options" @change="handleChange"></el-cascader>
+            <el-form-item label="是否顶级">
+                <el-switch v-model="isTop" active-color="#13ce66" inactive-color="#ff4949">
+                </el-switch>
+            </el-form-item>
+            <el-form-item label="上级部门" v-if="isTop">
+                <el-cascader style="width: 360px;" placeholder="默认为顶级部门" :props="{ checkStrictly: true }" clearable
+                    v-model="value" :options="options" @change="handleChange"></el-cascader>
             </el-form-item>
             <el-form-item label="部门负责人">
                 <el-input v-model="ruleForm.deptManageName"></el-input>
@@ -34,6 +38,7 @@
                     parentId: 0,
                     remark: ""
                 },
+                isTop:false,
                 value: [],
                 options: []
             };
@@ -59,6 +64,9 @@
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             },
+            displaydept(parm){
+
+            }
         },
         mounted() {
             axios.get("/api/Department/GetTreeNodes").then(m => {
