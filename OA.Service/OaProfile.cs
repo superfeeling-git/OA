@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using OA.Entity;
 using OA.Dtos;
 using OA.Dtos.Department;
+using OA.Repository;
 
 namespace OA.Service
 {

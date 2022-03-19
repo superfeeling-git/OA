@@ -30,6 +30,16 @@ export default new Router({
       path: '/test',
       name: 'test',
       component: test,
+    },
+    {
+      path: '/coma',
+      name: 'coma',
+      component: ()=>import('@/page/coma'),
+    },
+    {
+      path:"/login",
+      name:"login",
+      component:()=>import('@/page/login')
     }
   ]
 })

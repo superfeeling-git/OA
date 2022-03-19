@@ -16,5 +16,12 @@ namespace OA.Repository
         {
             this.db = db;
         }
+
+        public void FindByName(string name)
+        {
+            db.Departments.Where(m => m.DeptName == name);
+
+            var dept = db.Departments;
+        }
     }
 }

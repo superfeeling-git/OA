@@ -1,4 +1,5 @@
-﻿using OA.Dtos.UserAccount;
+﻿using OA.Dtos;
+using OA.Dtos.UserAccount;
 using OA.Entity;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,6 @@ namespace OA.Service
 {
     public interface IUserAccountService : IBaseService<UserAccount, UserAccountDto, int>
     {
+        ResultDto Login(LoginDto loginDto);
     }
 }

@@ -9,6 +9,6 @@ namespace OA.Repository
 {
     public interface IUserAccountRepository : IBaseRepository<UserAccount, int>
     {
-
+        
     }
 }

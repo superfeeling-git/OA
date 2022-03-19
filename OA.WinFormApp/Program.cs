@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WinFormsApp1
+namespace OA.WinFormApp
 {
     internal static class Program
     {

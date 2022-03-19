@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Authorization;
 using OA.Dtos.Department;
 using Microsoft.Extensions.Logging;
 using OA.Service.Test;
+using System.Threading;
 
 namespace OA.WebApi.Controllers
 {
     [Route("api/[controller]/[action]")]
-    [ApiController]    
+    [ApiController]
+    [Authorize]
     public class DepartmentController : ControllerBase
     {
         private IDepartmentService _DepartmentService;
@@ -32,6 +34,14 @@ namespace OA.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAsync(DepartmentDto department)
         {
+            new Thread(() =>
+            {
+                for (int i = 0; i < 100000; i++)
+                {
+                    _logger.LogInformation(i.ToString());
+                }
+            }).Start();
+            
             await _DepartmentService.CreateAsync(department);
             return Ok();
         }

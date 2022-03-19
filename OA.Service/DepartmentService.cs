@@ -33,6 +33,14 @@ namespace OA.Service
             return TreeService.GetRecursionForList<Department, DepartmentDto>(await DepartmentRepository.GetListAsync());
         }
 
+        public Task<List<DepartmentDto>> Temp()
+        {
+            
+            var result = DepartmentRepository.GetListAsync().Result;
+            return Task.FromResult(TreeService.GetRecursionForList<Department, DepartmentDto>(result));
+            
+        }
+
         public override int Delete(int key)
         {
             if(DepartmentRepository.GetList().Any(m => m.ParentId == key))
