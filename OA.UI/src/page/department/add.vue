@@ -8,7 +8,7 @@
                 <el-switch v-model="isTop" active-color="#13ce66" inactive-color="#ff4949">
                 </el-switch>
             </el-form-item>
-            <el-form-item label="上级部门" v-if="isTop">
+            <el-form-item label="上级部门hhhhhhhhhhhhh" v-if="isTop">
                 <el-cascader style="width: 360px;" placeholder="默认为顶级部门" :props="{ checkStrictly: true }" clearable
                     v-model="value" :options="options" @change="handleChange"></el-cascader>
             </el-form-item>
